@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+### A convenience script to run Docker Compose commands.
+
+set -o errexit
+set -o nounset
+set -o noclobber
+set -o pipefail
+
+environment="${1}"
+shift
+params="${*}"
+
+set -o allexport
+. ./config/.env
+set +o allexport
+
+export DJANGO_ENV="${environment}"
+
+GIT_COMMIT_SHA="$(git rev-parse HEAD)"
+export GIT_COMMIT_SHA
+
+docker_options="${DOCKER_OPTIONS:-}"
+
+docker_compose_options='--file ./docker-compose.yml'
+case "${DJANGO_ENV}" in
+"${DEVELOPMENT_DJANGO_ENV}")
+  docker_compose_options="${docker_compose_options} --file ./docker-compose.override.yml"
+  ;;
+
+"${PRODUCTION_DJANGO_ENV}")
+  set -o allexport
+  . remote_host.env
+  set +o allexport
+  docker_compose_options="${docker_compose_options} --file ./docker/docker-compose.prod.yml"
+  ;;
+
+*)
+  echo "The '${DJANGO_ENV}' environment is not supported."
+  exit 1
+  ;;
+esac
+# shellcheck disable=SC2236
+if [[ ! -z "${DOCKER_COMPOSE_OPTIONS+x}" ]]; then
+  docker_compose_options="${docker_compose_options} ${DOCKER_COMPOSE_OPTIONS}"
+fi
+
+docker ${docker_options} compose ${docker_compose_options} ${params}
