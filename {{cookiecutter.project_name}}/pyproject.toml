@@ -82,7 +82,7 @@ include = "H017,H035"
 indent = 2
 blank_line_after_tag = "load,extends"
 profile = "django"
-max_line_length = 80
+max_line_length = {{cookiecutter.line_length}}
 format_attribute_template_tags = true
 
 
