@@ -66,8 +66,9 @@ def _create_secret_key(config_path):
     secret_key = _get_random_string()
 
     with open(config_path, 'r+') as config_file:
-        # Replace CHANGEME with SECRET_KEY
-        file_contents = config_file.read().replace(CHANGEME, secret_key, 1)
+        # Replace CHANGEME with SECRET_KEY, and enclose it in single quotes to prevent shell scripts
+        # from choking on the value when the env file is sourced:
+        file_contents = config_file.read().replace(CHANGEME, f"'{secret_key}'", 1)
 
         # Write the results to the file:
         config_file.seek(0)
