@@ -19,7 +19,6 @@ services:
       # We only mount source code in development:
       - .:/code
     build:
-      # Needed for fixing permissions of files created by Docker
       args:
-        - UID=${UID:-1000}
-        - GID=${GID:-1000}
+        - UID=${DOCKER_UID}
+        - GID=${DOCKER_GID}

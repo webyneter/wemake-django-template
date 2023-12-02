@@ -20,6 +20,13 @@ export DJANGO_ENV="${environment}"
 GIT_COMMIT_SHA="$(git rev-parse HEAD)"
 export GIT_COMMIT_SHA
 
+# Make sure Docker Volumes are always mounted under the current user and group IDs to avoid
+# file system permission issues:
+DOCKER_UID="$(id -u)"
+export DOCKER_UID
+DOCKER_GID="$(id -g)"
+export DOCKER_GID
+
 docker_options="${DOCKER_OPTIONS:-}"
 
 docker_compose_options='--file ./docker-compose.yml'

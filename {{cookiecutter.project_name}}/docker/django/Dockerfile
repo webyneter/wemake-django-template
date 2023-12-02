@@ -9,9 +9,8 @@ LABEL vendor="{{ cookiecutter.project_domain }}"
 
 # `DJANGO_ENV` arg is used to make prod / dev builds:
 ARG DJANGO_ENV \
-  # Needed for fixing permissions of files created by Docker:
-  UID=1000 \
-  GID=1000
+  UID \
+  GID
 
 ENV DJANGO_ENV=${DJANGO_ENV} \
   # python:
