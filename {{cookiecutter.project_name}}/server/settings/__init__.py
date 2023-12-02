@@ -9,8 +9,6 @@ To change settings file:
 `DJANGO_ENV=production python manage.py runserver`
 """
 
-from os import environ
-
 from environ import Env
 import django_stubs_ext
 from split_settings.tools import include, optional
@@ -22,7 +20,6 @@ django_stubs_ext.monkeypatch()
 env = Env()
 
 # Managing environment via `DJANGO_ENV` variable:
-environ.setdefault('DJANGO_ENV', 'development')
 DJANGO_ENV = env("DJANGO_ENV")
 
 _base_settings = (
