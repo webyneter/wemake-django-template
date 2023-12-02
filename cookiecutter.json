@@ -3,6 +3,7 @@
   "project_verbose_name": "Test Project",
   "project_domain": "myapp.com",
   "organization": "wemake.services",
+  "async": false,
   "line_length": 120,
   "coverage_fail_under": 90,
 

@@ -12,6 +12,10 @@ classifiers = [
 [tool.poetry.dependencies]
 python = "^3.11"
 
+{%- if cookiecutter.async %}
+uvloop = ">=0.19.0"
+{%- endif %}
+
 django = { version = "^4.2", extras = ["argon2"] }
 django-split-settings = "^1.2"
 django-axes = "^6.1"
@@ -43,6 +47,9 @@ nitpick = "^0.34"
 doc8 = "^1.0"
 
 pytest = "^7.4"
+{% if cookiecutter.async -%}
+pytest-asyncio = "^0.21"
+{% endif -%}
 pytest-django = "^4.7"
 pytest-cov = "^4.0"
 covdefaults = "^2.3"
