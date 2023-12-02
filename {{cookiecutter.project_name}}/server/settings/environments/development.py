@@ -74,7 +74,7 @@ MIDDLEWARE += (
 # https://django-debug-toolbar.readthedocs.io/en/stable/installation.html#configure-internal-ips
 try:  # This might fail on some OS
     INTERNAL_IPS = [
-        '{0}.1'.format(ip[:ip.rfind('.')])
+        f'{ip[:ip.rfind(".")]}.1'
         for ip in socket.gethostbyname_ex(socket.gethostname())[2]
     ]
 except socket.error:  # pragma: no cover
