@@ -27,7 +27,7 @@ services:
         context: .
         dockerfile: ./docker/django/Dockerfile
         args:
-          DJANGO_ENV: development
+          DJANGO_ENV: "${DJANGO_ENV}"
         cache_from:
           - "{{ cookiecutter.project_name }}:dev"
           - "{{ cookiecutter.project_name }}:latest"
