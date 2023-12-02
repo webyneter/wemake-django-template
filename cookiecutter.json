@@ -4,6 +4,7 @@
   "project_domain": "myapp.com",
   "organization": "wemake.services",
   "line_length": 120,
+  "coverage_fail_under": 90,
 
   "_extensions": ["jinja2_git.GitExtension"],
   "_copy_without_render": [
