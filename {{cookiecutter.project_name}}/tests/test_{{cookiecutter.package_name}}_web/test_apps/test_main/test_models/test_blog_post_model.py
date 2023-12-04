@@ -3,7 +3,7 @@ from typing import final
 from hypothesis import given
 from hypothesis.extra import django
 
-from server.apps.main.models import BlogPost
+from {{ cookiecutter.package_name }}_web.apps.main.models import BlogPost
 
 
 @final

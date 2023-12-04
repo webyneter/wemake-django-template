@@ -8,13 +8,13 @@ import logging
 import socket
 from typing import TYPE_CHECKING
 
-from server.settings.components import config
-from server.settings.components.common import (
+from {{ cookiecutter.package_name }}_web.settings.components import config
+from {{ cookiecutter.package_name }}_web.settings.components.common import (
     DATABASES,
     INSTALLED_APPS,
     MIDDLEWARE,
 )
-from server.settings.components.csp import (
+from {{ cookiecutter.package_name }}_web.settings.components.csp import (
     CSP_CONNECT_SRC,
     CSP_IMG_SRC,
     CSP_SCRIPT_SRC,
@@ -89,7 +89,7 @@ def _custom_show_toolbar(request: 'HttpRequest') -> bool:
 
 DEBUG_TOOLBAR_CONFIG = {
     'SHOW_TOOLBAR_CALLBACK':
-        'server.settings.environments.development._custom_show_toolbar',
+        '{{ cookiecutter.package_name }}_web.settings.environments.development._custom_show_toolbar',
 }
 
 # This will make debug toolbar to work with django-csp,

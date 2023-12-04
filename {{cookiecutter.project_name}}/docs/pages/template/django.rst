@@ -22,8 +22,8 @@ Components
 
 If you have some specific components like ``celery`` or ``mailgun`` installed,
 they could be configured in separate files.
-Just create a new file in ``server/settings/components/``.
-Then add it into ``server/settings/__init__.py``.
+Just create a new file in ``{{cookiecutter.package_name}}_web/settings/components/``.
+Then add it into ``{{cookiecutter.package_name}}_web/settings/__init__.py``.
 
 Environments
 ~~~~~~~~~~~~
@@ -31,20 +31,20 @@ Environments
 To run ``django`` on different environments just
 specify ``DJANGO_ENV`` environment variable.
 It must have the same name as one of the files
-from ``server/settings/environments/``.
+from ``{{cookiecutter.package_name}}_web/settings/environments/``.
 Then, values from this file will override other settings.
 
 Local settings
 ~~~~~~~~~~~~~~
 
 If you need some specific local configuration tweaks,
-you can create file ``server/settings/environments/local.py.template``
-to ``server/settings/environments/local.py``.
+you can create file ``{{cookiecutter.package_name}}_web/settings/environments/local.py.template``
+to ``{{cookiecutter.package_name}}_web/settings/environments/local.py``.
 It will be loaded into your settings automatically if exists.
 
 .. code:: bash
 
-  cp server/settings/environments/local.py.template server/settings/environments/local.py
+  cp {{cookiecutter.package_name}}_web/settings/environments/local.py.template {{cookiecutter.package_name}}_web/settings/environments/local.py
 
 See ``local.py.template`` version for the reference.
 

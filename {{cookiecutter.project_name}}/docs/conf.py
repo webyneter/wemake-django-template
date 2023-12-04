@@ -24,7 +24,7 @@ import tomli
 sys.path.insert(0, os.path.abspath('..'))
 
 # Django setup, all deps must be present to succeed:
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'server.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', '{{cookiecutter.package_name}}_web.settings')
 django.setup()
 
 

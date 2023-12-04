@@ -78,8 +78,8 @@ See `djlint <https://djlint.com/>`_ docs.
 
 .. code:: bash
 
-  djlint --check server
-  djlint --lint server
+  djlint --check src
+  djlint --lint src
 
 
 dotenv-linter

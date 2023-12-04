@@ -55,20 +55,20 @@ root project
 - ``scripts/`` - helper folder, that contains various development scripts
   and teardown for local development
 
-server
+{{cookiecutter.package_name}}_web
 ~~~~~~
 
-- ``server/__init__.py`` - package definition, empty file
-- ``server/urls.py`` - ``django`` `urls definition <https://docs.djangoproject.com/en/4.2/topics/http/urls/>`_
-- ``server/wsgi.py`` - ``django`` `wsgi definition <https://en.wikipedia.org/wiki/Web_Server_Gateway_Interface>`_
-- ``server/asgi.py`` - ``django`` `asgi definition <https://en.wikipedia.org/wiki/Asynchronous_Server_Gateway_Interface>`_
-- ``server/apps/`` - place to put all your apps into
-- ``server/apps/main`` - ``django`` application, used as an example,
+- ``{{cookiecutter.package_name}}_web/__init__.py`` - package definition, empty file
+- ``{{cookiecutter.package_name}}_web/urls.py`` - ``django`` `urls definition <https://docs.djangoproject.com/en/4.2/topics/http/urls/>`_
+- ``{{cookiecutter.package_name}}_web/wsgi.py`` - ``django`` `wsgi definition <https://en.wikipedia.org/wiki/Web_Server_Gateway_Interface>`_
+- ``{{cookiecutter.package_name}}_web/asgi.py`` - ``django`` `asgi definition <https://en.wikipedia.org/wiki/Asynchronous_Server_Gateway_Interface>`_
+- ``{{cookiecutter.package_name}}_web/apps/`` - place to put all your apps into
+- ``{{cookiecutter.package_name}}_web/apps/main`` - ``django`` application, used as an example,
   could be removed
-- ``server/settings`` - settings defined with ``django-split-settings``,
+- ``{{cookiecutter.package_name}}_web/settings`` - settings defined with ``django-split-settings``,
   see this `tutorial <https://medium.com/wemake-services/managing-djangos-settings-e2b7f496120d>`_
   for more information
-- ``server/templates`` - external folder for ``django`` templates,
+- ``{{cookiecutter.package_name}}_web/templates`` - external folder for ``django`` templates,
   used for simple files as ``robots.txt`` and so on
 
 docker

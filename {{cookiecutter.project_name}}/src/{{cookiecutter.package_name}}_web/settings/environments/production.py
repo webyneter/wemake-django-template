@@ -5,7 +5,7 @@ This file is required and if development.py is present these
 values are overridden.
 """
 
-from server.settings.components import config
+from {{ cookiecutter.package_name }}_web.settings.components import config
 
 # Production flags:
 # https://docs.djangoproject.com/en/4.2/howto/deployment/

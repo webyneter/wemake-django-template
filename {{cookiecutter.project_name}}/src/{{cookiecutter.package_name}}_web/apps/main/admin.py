@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from server.apps.main.models import BlogPost
+from {{ cookiecutter.package_name }}_web.apps.main.models import BlogPost
 
 
 @admin.register(BlogPost)

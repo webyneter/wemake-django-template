@@ -37,4 +37,4 @@ find /var/www/django/static -type f \
 # Make sure it is in sync with `django/ci.sh` check:
 /usr/local/bin/gunicorn \
   --config python:docker.django.gunicorn_config \
-  server.wsgi
+  {{cookiecutter.package_name}}_web.wsgi

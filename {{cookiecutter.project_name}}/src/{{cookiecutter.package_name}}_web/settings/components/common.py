@@ -12,7 +12,7 @@ from typing import Dict, List, Tuple, Union
 
 from django.utils.translation import gettext_lazy as _
 
-from server.settings.components import BASE_DIR, config
+from {{ cookiecutter.package_name }}_web.settings.components import BASE_DIR, config
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -23,7 +23,7 @@ SECRET_KEY = config('DJANGO_SECRET_KEY')
 
 INSTALLED_APPS: Tuple[str, ...] = (
     # Your apps go here:
-    'server.apps.main',
+    '{{ cookiecutter.package_name }}_web.apps.main',
 
     # Default django apps:
     'django.contrib.auth',
@@ -50,7 +50,7 @@ INSTALLED_APPS: Tuple[str, ...] = (
 
 MIDDLEWARE: Tuple[str, ...] = (
     # Logging:
-    'server.settings.components.logging.LoggingContextVarsMiddleware',
+    '{{ cookiecutter.package_name }}_web.settings.components.logging.LoggingContextVarsMiddleware',
 
     # Content Security Policy:
     'csp.middleware.CSPMiddleware',
@@ -74,9 +74,9 @@ MIDDLEWARE: Tuple[str, ...] = (
     'django_http_referrer_policy.middleware.ReferrerPolicyMiddleware',
 )
 
-ROOT_URLCONF = 'server.urls'
+ROOT_URLCONF = '{{ cookiecutter.package_name }}_web.urls'
 
-WSGI_APPLICATION = 'server.wsgi.application'
+WSGI_APPLICATION = '{{ cookiecutter.package_name }}_web.wsgi.application'
 
 
 # Database
@@ -138,7 +138,7 @@ TEMPLATES = [{
     'BACKEND': 'django.template.backends.django.DjangoTemplates',
     'DIRS': [
         # Contains plain text templates, like `robots.txt`:
-        BASE_DIR.joinpath('server', 'templates'),
+        BASE_DIR.joinpath('{{cookiecutter.package_name}}_web', 'templates'),
     ],
     'OPTIONS': {
         'context_processors': [

@@ -36,11 +36,11 @@ run_ci () {
   flake8 .
 
   # Linl HTML formatting:
-  djlint --check server
-  djlint --lint server
+  djlint --check {{cookiecutter.package_name}}_web
+  djlint --lint {{cookiecutter.package_name}}_web
 
   # Running type checking, see https://github.com/typeddjango/django-stubs
-  mypy manage.py server tests
+  mypy manage.py {{cookiecutter.package_name}}_web tests
 
   # Running tests:
   pytest
@@ -62,7 +62,7 @@ run_ci () {
   python manage.py lintmigrations --exclude-apps=axes --warnings-as-errors
 
   # Check production settings for gunicorn:
-  gunicorn --check-config --config python:docker.django.gunicorn_config server.wsgi
+  gunicorn --check-config --config python:docker.django.gunicorn_config {{cookiecutter.package_name}}_web.wsgi
 
   # Generate a report about the state of dependencies' safety,
   # it is not blocking, because there are too many false positives:

@@ -1,6 +1,6 @@
 from django.urls import path
 
-from server.apps.main.views import index
+from {{ cookiecutter.package_name }}_web.apps.main.views import index
 
 app_name = 'main'
 

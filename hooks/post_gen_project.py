@@ -98,14 +98,16 @@ def copy_local_configuration():
     # Local config:
     local_template = os.path.join(
         PROJECT_DIRECTORY,
-        'server',
+        'src',
+        '{{cookiecutter.package_name}}_web',
         'settings',
         'environments',
         'local.py.template',
     )
     local_config = os.path.join(
         PROJECT_DIRECTORY,
-        'server',
+        'src',
+        '{{cookiecutter.package_name}}_web',
         'settings',
         'environments',
         'local.py',

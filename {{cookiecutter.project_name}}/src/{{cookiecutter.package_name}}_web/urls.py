@@ -16,8 +16,8 @@ from django.urls import include, path
 from django.views.generic import TemplateView
 from health_check import urls as health_urls
 
-from server.apps.main import urls as main_urls
-from server.apps.main.views import index
+from {{ cookiecutter.package_name }}_web.apps.main import urls as main_urls
+from {{ cookiecutter.package_name }}_web.apps.main.views import index
 
 admin.autodiscover()
 

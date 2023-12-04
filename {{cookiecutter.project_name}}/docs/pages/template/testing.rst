@@ -87,10 +87,10 @@ Running ``mypy`` is required before any commit:
 
 .. code:: bash
 
-  mypy server tests/**/*.py
+  mypy src tests/**/*.py
 
 This will eliminate a lot of possible ``TypeError`` and other issues
-in both ``server/`` and ``tests/`` directories.
+in both ``{{cookiecutter.package_name}}_web/`` and ``tests/`` directories.
 We use ``tests/**/*.py`` because ``tests/`` is not a python package,
 so it is not importable.
 
