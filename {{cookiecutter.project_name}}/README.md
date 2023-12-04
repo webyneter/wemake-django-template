@@ -4,7 +4,7 @@
 
 ## How This Project Was Scaffolded
 
-This project was scaffolded using [`webyneter/wemake-django-template`](https://github.com/webyneter/wemake-django-template). Current template version is: [{% gitcommit short=True %}](https://github.com/webyneter/wemake-django-template/tree/{% gitcommit %}). See what is [updated](https://github.com/webyneter/wemake-django-template/compare/{% gitcommit %}...master) since then.
+This project was scaffolded using [`webyneter/wemake-django-template`](https://github.com/webyneter/wemake-django-template), off of [{% gitcommit short=True %}](https://github.com/webyneter/wemake-django-template/tree/{% gitcommit %}). See what got [updated](https://github.com/webyneter/wemake-django-template/compare/{% gitcommit %}...master) since then.
 
 {%- if cookiecutter.meta_include %}
 ### Steps
