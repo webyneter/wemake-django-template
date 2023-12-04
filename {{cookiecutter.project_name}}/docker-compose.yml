@@ -21,7 +21,7 @@ services:
   web:
     <<: &web
       # Image name is changed in production:
-      image: "{{ cookiecutter.project_name }}:dev"
+      image: "{{ cookiecutter.project_name }}:development"
       build:
         target: development_build
         context: .
@@ -29,7 +29,7 @@ services:
         args:
           DJANGO_ENV: "${DJANGO_ENV}"
         cache_from:
-          - "{{ cookiecutter.project_name }}:dev"
+          - "{{ cookiecutter.project_name }}:development"
           - "{{ cookiecutter.project_name }}:latest"
           - "*"
 
