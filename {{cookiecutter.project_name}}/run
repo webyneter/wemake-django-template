@@ -11,7 +11,7 @@ environment="${1}"
 shift
 params="${*}"
 
-export DJANGO_ENV="${environment}"
+export ENVIRONMENT="${environment}"
 
 GIT_COMMIT_SHA="$(git rev-parse HEAD)"
 export GIT_COMMIT_SHA
@@ -26,7 +26,7 @@ export DOCKER_GID
 docker_options="${DOCKER_OPTIONS:-}"
 
 docker_compose_options='--file ./docker-compose.yml'
-case "${DJANGO_ENV}" in
+case "${ENVIRONMENT}" in
 'development')
   docker_compose_options="${docker_compose_options} --file ./docker-compose.override.yml"
   ;;
@@ -39,7 +39,7 @@ case "${DJANGO_ENV}" in
   ;;
 
 *)
-  echo "The '${DJANGO_ENV}' environment is not supported."
+  echo "The '${ENVIRONMENT}' environment is not supported."
   exit 1
   ;;
 esac

@@ -28,7 +28,7 @@ build:
       - asdf global poetry latest
       - poetry config virtualenvs.create false
     post_install:
-      # We build django with `DJANGO_ENV=production`, so no dev deps:
+      # We build django with `ENVIRONMENT=production`, so no dev deps:
       - . "$READTHEDOCS_VIRTUALENV_PATH/bin/activate" && cd '{{cookiecutter.project_name}}' && poetry install --only main --only docs
 
 sphinx:

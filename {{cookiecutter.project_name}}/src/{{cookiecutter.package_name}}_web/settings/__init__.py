@@ -6,7 +6,7 @@ https://github.com/sobolevn/django-split-settings
 https://sobolevn.me/2017/04/managing-djangos-settings
 
 To change settings file:
-`DJANGO_ENV=production python manage.py runserver`
+`ENVIRONMENT=production python manage.py runserver`
 """
 
 from environ import Env
@@ -19,8 +19,8 @@ django_stubs_ext.monkeypatch()
 
 env = Env()
 
-# Managing environment via `DJANGO_ENV` variable:
-DJANGO_ENV = env("DJANGO_ENV")
+# Managing environment via `ENVIRONMENT` variable:
+ENVIRONMENT = env("ENVIRONMENT")
 
 _base_settings = (
     'components/common.py',
@@ -29,7 +29,7 @@ _base_settings = (
     'components/caches.py',
 
     # Select the right env:
-    f'environments/{DJANGO_ENV}.py',
+    f'environments/{ENVIRONMENT}.py',
 
     # Optionally override some settings:
     optional('environments/local.py'),

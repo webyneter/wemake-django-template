@@ -5,10 +5,10 @@ set -o nounset
 set -o pipefail
 
 # Initializing global variables and functions:
-: "${DJANGO_ENV}"
+: "${ENVIRONMENT}"
 
 if [ "$DJANGO_ENV" != 'development' ]; then
-  echo "DJANGO_ENV is not set to 'development'. Running tests is not safe."
+  echo "ENVIRONMENT is not set to 'development'. Running tests is not safe."
   exit 1
 fi
 
@@ -49,10 +49,10 @@ run_ci () {
   python manage.py check --fail-level WARNING
 
   # Run checks to be sure settings are correct (production flag is required):
-  DJANGO_ENV=production python manage.py check --deploy --fail-level WARNING
+  ENVIRONMENT=production python manage.py check --deploy --fail-level WARNING
 
   # Check that staticfiles app is working fine:
-  DJANGO_ENV=production DJANGO_COLLECTSTATIC_DRYRUN=1 \
+  ENVIRONMENT=production DJANGO_COLLECTSTATIC_DRYRUN=1 \
     python manage.py collectstatic --no-input --dry-run
 
   # Check that all migrations worked fine:

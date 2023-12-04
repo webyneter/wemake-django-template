@@ -29,7 +29,7 @@ Environments
 ~~~~~~~~~~~~
 
 To run ``django`` on different environments just
-specify ``DJANGO_ENV`` environment variable.
+specify ``ENVIRONMENT`` environment variable.
 It must have the same name as one of the files
 from ``{{cookiecutter.package_name}}_web/settings/environments/``.
 Then, values from this file will override other settings.

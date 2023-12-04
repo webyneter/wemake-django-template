@@ -7,12 +7,12 @@ FROM python:3.11-slim-bookworm AS development_build
 LABEL maintainer="{{ cookiecutter.project_domain }}"
 LABEL vendor="{{ cookiecutter.project_domain }}"
 
-# `DJANGO_ENV` arg is used to make prod / dev builds:
-ARG DJANGO_ENV \
+# `ENVIRONMENT` arg is used to make prod / dev builds:
+ARG ENVIRONMENT \
   UID \
   GID
 
-ENV DJANGO_ENV=${DJANGO_ENV} \
+ENV ENVIRONMENT=${ENVIRONMENT} \
   # python:
   PYTHONFAULTHANDLER=1 \
   PYTHONUNBUFFERED=1 \

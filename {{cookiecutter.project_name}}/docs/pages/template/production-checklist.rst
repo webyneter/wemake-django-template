@@ -34,7 +34,7 @@ We also check that static files can be collected:
 
 .. code :: bash
 
-   DJANGO_ENV=production python manage.py collectstatic --no-input --dry-run
+   ENVIRONMENT=production python manage.py collectstatic --no-input --dry-run
 
 However, this check does not cover all the cases.
 Sometimes ``ManifestStaticFilesStorage`` will fail on real cases,
@@ -47,7 +47,7 @@ That's how we check ``django`` warnings:
 
 .. code:: bash
 
-  DJANGO_ENV=production python manage.py check --deploy --fail-level WARNING
+  ENVIRONMENT=production python manage.py check --deploy --fail-level WARNING
 
 These warnings are raised by ``django``
 when it detects any configuration issues.
