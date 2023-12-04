@@ -9,7 +9,7 @@ classifiers = [
 ]
 packages = [
   { include = "{{ cookiecutter.package_name }}", from = "src" },
-  { include = "server", from = "." }, {# TODO: rename server to project_name_web #}
+  { include = "server", from = "src" }, {# TODO: rename server to project_name_web #}
 ]
 
 
