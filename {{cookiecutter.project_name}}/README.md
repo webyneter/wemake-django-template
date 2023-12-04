@@ -37,9 +37,9 @@ cookiecutter \
 
 You will need:
 
-- `python3.11` (see `pyproject.toml` for full version)
-- `postgresql` with version `15`
-- Latest `docker`
+- Python 3.11
+- PostgreSQL 16
+- Docker
 
 
 ## Development

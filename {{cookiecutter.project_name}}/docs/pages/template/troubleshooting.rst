@@ -40,7 +40,7 @@ your volumes in ``docker-compose.yml`` file.
 .. code:: yaml
 
   volumes:
-    - pgdata:/var/lib/postgresql/data:delegated
+    - postgres-data:/var/lib/postgresql/data:delegated
 
 For more information, you can look at the
 `docker documents <https://docs.docker.com/docker-for-mac/osxfs-caching/>`_

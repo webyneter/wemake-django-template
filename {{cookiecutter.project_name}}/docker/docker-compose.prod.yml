@@ -7,11 +7,24 @@
 # See `./docs/pages/template/production.rst` docs.
 
 version: "3.8"
+
 services:
-  caddy:
-    image: "caddy:2.7.4"
+  web:
+    image: registry.gitlab.com/{{ cookiecutter.organization }}/{{ cookiecutter.project_name }}:latest
+    build:
+      target: production
+    volumes:
+      - web-media:/var/www/web/media  # since in dev it is app's folder
+      - web-locale:/code/locale  # since in dev it is app's folder
+    networks:
+      - proxy
     restart: unless-stopped
-    env_file: ./config/.env
+    command: bash ./docker/web/gunicorn.sh
+
+  caddy:
+    image: caddy:2.7.4
+    depends_on:
+      - web
     volumes:
       - ./docker/caddy/Caddyfile:/etc/caddy/Caddyfile  # configuration
       - ./docker/caddy/ci.sh:/etc/ci.sh  # test script
@@ -19,46 +32,21 @@ services:
       - caddy-data:/data  # saving certificates
       - web-static:/var/www/web/static  # serving web's statics
       - web-media:/var/www/web/media  # serving web's media
+    env_file: ./config/.env
+    networks:
+      - proxy
     ports:
       - "80:80"
       - "443:443"
-    depends_on:
-      - web
-    networks:
-      - proxynet
-
-  web:
-    <<: &web
-      # Image for production:
-      image: "registry.gitlab.com/{{ cookiecutter.organization }}/{{ cookiecutter.project_name }}:latest"
-      build:
-        target: production_build
-
-      restart: unless-stopped
-      volumes:
-        - web-media:/var/www/web/media  # since in dev it is app's folder
-        - web-locale:/code/locale  # since in dev it is app's folder
-
-    command: bash ./docker/web/gunicorn.sh
-    networks:
-      - proxynet
-    expose:
-      - 8000
-
-# This task is an example of how to extend existing ones:
-#   some_worker:
-#     <<: *web
-#     command: python manage.py worker_process
-#     deploy:
-#       replicas: 2
-
-networks:
-  # Network for your proxy server and application to connect them,
-  # do not use it for anything else!
-  proxynet:
+    restart: unless-stopped
 
 volumes:
   web-media:
   web-locale:
   caddy-config:
   caddy-data:
+
+networks:
+  # Network for your proxy server and application to connect them,
+  # do not use it for anything else!
+  proxy:

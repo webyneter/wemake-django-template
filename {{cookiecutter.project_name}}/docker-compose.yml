@@ -8,42 +8,30 @@
 # in production.
 
 version: "3.8"
+
 services:
-  db:
-    image: "postgres:15-alpine"
-    restart: unless-stopped
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-    networks:
-      - postgresnet
-    env_file: ./config/.env
-
   web:
-    <<: &web
-      # Image name is changed in production:
-      image: "{{ cookiecutter.project_name }}:development"
-      build:
-        target: development_build
-        context: .
-        dockerfile: ./docker/web/Dockerfile
-        args:
-          DJANGO_ENV: "${DJANGO_ENV}"
-        cache_from:
-          - "{{ cookiecutter.project_name }}:development"
-          - "{{ cookiecutter.project_name }}:latest"
-          - "*"
-
-      volumes:
-        - web-static:/var/www/web/static
-      depends_on:
-        - db
-      networks:
-        - webnet
-        - postgresnet
-      env_file: ./config/.env
-      environment:
-        DJANGO_DATABASE_HOST: db
-
+    image: {{ cookiecutter.project_name }}:development
+    build:
+      target: development
+      context: .
+      dockerfile: ./docker/web/Dockerfile
+      args:
+        ENVIRONMENT: "${ENVIRONMENT}"
+      cache_from:
+        - {{ cookiecutter.project_name }}:development
+        - {{ cookiecutter.project_name }}:latest
+        - "*"
+    depends_on:
+      - postgres
+    volumes:
+      - web-static:/var/www/web/static
+    env_file: ./config/.env
+    environment:
+      POSTGRES_HOST: postgres
+    networks:
+      - web
+      - postgres
     command: python -Wd manage.py runserver 0.0.0.0:8000
     healthcheck:
       # We use `$$` here because:
@@ -59,17 +47,24 @@ services:
       retries: 5
       start_period: 30s
 
-# This task is an example of how to extend existing ones:
-#   some_worker:
-#     <<: *web
-#     command: python manage.py worker_process
-
-networks:
-  # Network for postgres, use it for services that need access to the db:
-  postgresnet:
-  # Network for your internals, use it by default:
-  webnet:
+  postgres:
+    image: postgres:16.1-bullseye
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    env_file: ./config/.env
+    networks:
+      - postgres
+    healthcheck:
+      test: 'pg_isready --username="${POSTGRES_USER}" --dbname=="${POSTGRES_DB}"'
+      start_period: 10s
+      interval: 10s
+      timeout: 9s
+      retries: 5
 
 volumes:
-  pgdata:
+  postgres-data:
   web-static:
+
+networks:
+  postgres:
+  web:

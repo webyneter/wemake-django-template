@@ -2,7 +2,7 @@
 # This Dockerfile uses multi-stage build to customize DEV and PROD images:
 # https://docs.docker.com/develop/develop-images/multistage-build/
 
-FROM python:3.11-slim-bookworm AS development_build
+FROM python:3.11-slim-bookworm AS development
 
 LABEL maintainer="{{ cookiecutter.project_domain }}"
 LABEL vendor="{{ cookiecutter.project_domain }}"
@@ -103,5 +103,6 @@ ENTRYPOINT ["tini", "--", "/docker-entrypoint.sh"]
 
 # The following stage is only for production:
 # https://wemake-django-template.readthedocs.io/en/latest/pages/template/production.html
-FROM development_build AS production_build
+FROM development AS production
+
 COPY --chown=web:web . /code
