@@ -7,7 +7,7 @@ set -o pipefail
 # Initializing global variables and functions:
 : "${ENVIRONMENT}"
 
-if [ "$DJANGO_ENV" != 'development' ]; then
+if [ "$ENVIRONMENT" != 'development' ]; then
   echo "ENVIRONMENT is not set to 'development'. Running tests is not safe."
   exit 1
 fi

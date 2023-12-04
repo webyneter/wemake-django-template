@@ -78,12 +78,12 @@ COPY --chown=web:web ./poetry.lock ./pyproject.toml /code/
 # Project initialization:
 # hadolint ignore=SC2046
 RUN --mount=type=cache,target="$POETRY_CACHE_DIR" \
-  echo "$DJANGO_ENV" \
+  echo "$ENVIRONMENT" \
   && poetry version \
   # Install deps:
   && poetry run pip install -U pip \
   && poetry install -vv \
-    $(if [ "$DJANGO_ENV" = 'production' ]; then echo '--only main'; fi) \
+    $(if [ "$ENVIRONMENT" = 'production' ]; then echo '--only main'; fi) \
     --no-interaction --no-root --no-ansi --sync
 
 # This is a special case. We need to run this script as an entry point:

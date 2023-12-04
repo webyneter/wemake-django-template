@@ -7,10 +7,10 @@ set -o pipefail
 # We are using `gunicorn` for production, see:
 # http://docs.gunicorn.org/en/stable/configure.html
 
-# Check that $DJANGO_ENV is set to "production",
+# Check that $ENVIRONMENT is set to "production",
 # fail otherwise, since it may break things:
-echo "ENVIRONMENT is $DJANGO_ENV"
-if [ "$DJANGO_ENV" != 'production' ]; then
+echo "ENVIRONMENT is $ENVIRONMENT"
+if [ "$ENVIRONMENT" != 'production' ]; then
   echo 'Error: ENVIRONMENT is not set to "production".'
   echo 'Application will not start.'
   exit 1
