@@ -26,7 +26,7 @@ which is not required into the development build.
 
 .. code:: bash
 
-  docker compose -f docker-compose.yml -f docker/docker-compose.prod.yml up
+  ./run production up
 
 
 Pulling pre-built images
