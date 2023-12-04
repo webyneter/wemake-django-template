@@ -1,6 +1,7 @@
 {
   "project_name": "test-project",
   "project_verbose_name": "{{ cookiecutter.project_name.replace('-', ' ').title() }}",
+  "package_name": "{{ cookiecutter.project_name.replace('-', '_') }}",
   "project_domain": "{{ cookiecutter.project_name.strip().lower().replace('_', '-') | truncate(63 - 12, True) ~ '.example.com' }}",
   "organization": "wemake.services",
   "meta_include": false,
