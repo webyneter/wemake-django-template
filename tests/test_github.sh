@@ -22,7 +22,7 @@ docker compose -f docker-compose.yml \
 
 # Building and testing dev image:
 docker compose build --build-arg BUILDKIT_INLINE_CACHE=1
-docker compose run --user=root --rm web ./docker/django/ci.sh
+docker compose run --user=root --rm web ./docker/web/ci.sh
 
 # Building and testing prod image:
 docker compose -f docker-compose.yml \

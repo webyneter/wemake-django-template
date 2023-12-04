@@ -69,8 +69,8 @@ RUN groupadd -g "${GID}" -r web \
   && useradd -d '/code' -g web -l -r -u "${UID}" web \
   && chown web:web -R '/code' \
   # Static and media files:
-  && mkdir -p '/var/www/django/static' '/var/www/django/media' \
-  && chown web:web '/var/www/django/static' '/var/www/django/media'
+  && mkdir -p '/var/www/web/static' '/var/www/web/media' \
+  && chown web:web '/var/www/web/static' '/var/www/web/media'
 
 # Copy only requirements, to cache them in docker layer
 COPY --chown=web:web ./poetry.lock ./pyproject.toml /code/
@@ -87,7 +87,7 @@ RUN --mount=type=cache,target="$POETRY_CACHE_DIR" \
     --no-interaction --no-root --no-ansi --sync
 
 # This is a special case. We need to run this script as an entry point:
-COPY ./docker/django/entrypoint.sh /docker-entrypoint.sh
+COPY ./docker/web/entrypoint.sh /docker-entrypoint.sh
 
 # Setting up proper permissions:
 RUN chmod +x '/docker-entrypoint.sh' \

@@ -25,7 +25,7 @@ services:
       build:
         target: development_build
         context: .
-        dockerfile: ./docker/django/Dockerfile
+        dockerfile: ./docker/web/Dockerfile
         args:
           DJANGO_ENV: "${DJANGO_ENV}"
         cache_from:
@@ -34,7 +34,7 @@ services:
           - "*"
 
       volumes:
-        - django-static:/var/www/django/static
+        - web-static:/var/www/web/static
       depends_on:
         - db
       networks:
@@ -72,4 +72,4 @@ networks:
 
 volumes:
   pgdata:
-  django-static:
+  web-static:

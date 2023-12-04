@@ -27,14 +27,14 @@ python /code/manage.py compilemessages
 
 # Precompress static files with brotli and gzip.
 # The list of ignored file types was taken from https://github.com/evansd/whitenoise
-find /var/www/django/static -type f \
+find /var/www/web/static -type f \
   ! -regex '^.+\.\(jpg\|jpeg\|png\|gif\|webp\|zip\|gz\|tgz\|bz2\|tbz\|xz\|br\|swf\|flv\|woff\|woff2\|3gp\|3gpp\|asf\|avi\|m4v\|mov\|mp4\|mpeg\|mpg\|webm\|wmv\)$' \
   -exec brotli --force --best {} \+ \
   -exec gzip --force --keep --best {} \+
 
 # Start gunicorn:
 # Docs: http://docs.gunicorn.org/en/stable/settings.html
-# Make sure it is in sync with `django/ci.sh` check:
+# Make sure it is in sync with `web/ci.sh` check:
 /usr/local/bin/gunicorn \
-  --config python:docker.django.gunicorn_config \
+  --config python:docker.web.gunicorn_config \
   {{cookiecutter.package_name}}_web.wsgi

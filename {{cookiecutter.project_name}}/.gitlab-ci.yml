@@ -58,7 +58,7 @@ test:
     - docker compose build
       --build-arg BUILDKIT_INLINE_CACHE=1
       --progress=plain web
-    - docker compose run --user=root --rm web ./docker/django/ci.sh
+    - docker compose run --user=root --rm web ./docker/web/ci.sh
 
     # Check the result image size:
     - disl "${PROJECT_NAME}:development" 950MiB

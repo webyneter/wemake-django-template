@@ -76,15 +76,15 @@ docker
 
 - ``docker/docker-compose.prod.yml`` - additional service definition file
   used for production
-- ``docker/django/Dockerfile`` - ``django`` container definition,
+- ``docker/web/Dockerfile`` - ``django`` container definition,
   used both for development and production
-- ``docker/django/entrypoint.sh`` - entry point script that is used
+- ``docker/web/entrypoint.sh`` - entry point script that is used
   when ``django`` container is starting
-- ``docker/django/gunicorn_config.py`` - that's how we
+- ``docker/web/gunicorn_config.py`` - that's how we
   configure ``gunicorn`` runner
-- ``docker/django/gunicorn.sh`` - production script
+- ``docker/web/gunicorn.sh`` - production script
   for ``django`` using ``gunicorn``
-- ``docker/django/ci.sh`` - file that specifies all possible checks that
+- ``docker/web/ci.sh`` - file that specifies all possible checks that
   we execute during our CI process for django
 - ``docker/caddy/Caddyfile`` - configuration file for Caddy webserver
 - ``docker/caddy/ci.sh`` - file that specifies all possible checks that
@@ -130,7 +130,7 @@ Some containers might have long starting times, for example:
 
 To be sure that container is started at the right time,
 we utilize ``wait-for-it`` `script <https://github.com/vishnubob/wait-for-it>`_.
-It is executed inside ``docker/django/entrypoint.sh`` file.
+It is executed inside ``docker/web/entrypoint.sh`` file.
 
 We start containers with ``tini``.
 Because this way we have a proper signal handling

@@ -92,7 +92,7 @@ Version mismatch will fail your build.
 When you want to update ``poetry``, you have to bump it in several places:
 
 1. ``pyproject.toml``
-2. ``docker/django/Dockerfile``
+2. ``docker/web/Dockerfile``
 
 Then you are fine!
 

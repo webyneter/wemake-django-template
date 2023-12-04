@@ -21,7 +21,7 @@ updates:
   open-pull-requests-limit: 10
 
 - package-ecosystem: docker
-  directory: "/{{cookiecutter.project_name}}/docker/django"
+  directory: "/{{cookiecutter.project_name}}/docker/web"
   schedule:
     interval: daily
     time: "02:00"

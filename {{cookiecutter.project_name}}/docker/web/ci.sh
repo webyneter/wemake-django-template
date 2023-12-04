@@ -26,8 +26,8 @@ run_ci () {
 
   # Testing filesystem and permissions:
   touch .perm && rm -f .perm
-  touch '/var/www/django/media/.perm' && rm -f '/var/www/django/media/.perm'
-  touch '/var/www/django/static/.perm' && rm -f '/var/www/django/static/.perm'
+  touch '/var/www/web/media/.perm' && rm -f '/var/www/web/media/.perm'
+  touch '/var/www/web/static/.perm' && rm -f '/var/www/web/static/.perm'
 
   # Checking `.env` files:
   dotenv-linter config/.env config/.env.template

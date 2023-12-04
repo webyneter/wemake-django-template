@@ -17,8 +17,8 @@ services:
       - ./docker/caddy/ci.sh:/etc/ci.sh  # test script
       - caddy-config:/config  # configuration autosaves
       - caddy-data:/data  # saving certificates
-      - django-static:/var/www/django/static  # serving django's statics
-      - django-media:/var/www/django/media  # serving django's media
+      - web-static:/var/www/web/static  # serving web's statics
+      - web-media:/var/www/web/media  # serving web's media
     ports:
       - "80:80"
       - "443:443"
@@ -36,10 +36,10 @@ services:
 
       restart: unless-stopped
       volumes:
-        - django-media:/var/www/django/media  # since in dev it is app's folder
-        - django-locale:/code/locale  # since in dev it is app's folder
+        - web-media:/var/www/web/media  # since in dev it is app's folder
+        - web-locale:/code/locale  # since in dev it is app's folder
 
-    command: bash ./docker/django/gunicorn.sh
+    command: bash ./docker/web/gunicorn.sh
     networks:
       - proxynet
     expose:
@@ -58,7 +58,7 @@ networks:
   proxynet:
 
 volumes:
-  django-media:
-  django-locale:
+  web-media:
+  web-locale:
   caddy-config:
   caddy-data:

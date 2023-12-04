@@ -59,8 +59,8 @@ Static and media files
 ~~~~~~~~~~~~~~~~~~~~~~
 
 We use ``/var/www/django`` folder to store our media
-and static files in production as ``/var/www/django/static``
-and ``/var/www/django/media``.
+and static files in production as ``/var/www/web/static``
+and ``/var/www/web/media``.
 Docker uses these two folders as named volumes.
 And later these volumes are also mounted to ``caddy``
 with ``ro`` mode so it possible to read their contents.
