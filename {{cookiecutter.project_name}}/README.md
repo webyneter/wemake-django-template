@@ -14,12 +14,12 @@ This project was scaffolded using [`webyneter/wemake-django-template`](https://g
 cat << EOF > ./interior-concept-cookiecutter-config.yaml
 default_context:
     project_name: "{{ cookiecutter.project_name }}"
-    organization: "{{ cookiecutter.project_name }}"
-    meta_include: true
+    organization: "{{ cookiecutter.organization }}"
+    meta_include: {{ cookiecutter.meta_include | lower }}
     meta_output_dir: "{{ cookiecutter.meta_output_dir }}"
-    async: true
-    line_length: 120
-    coverage_fail_under: 90
+    async: {{ cookiecutter.async | lower }}
+    line_length: {{ cookiecutter.line_length }}
+    coverage_fail_under: {{ cookiecutter.coverage_fail_under }}
 EOF
 
 # Create the project:
@@ -27,7 +27,7 @@ cookiecutter \
   --verbose \
   --no-input \
   --overwrite-if-exists \
-  --config-file ./interior-concept-cookiecutter-config.yaml \
+  --config-file ./{{ cookiecutter.project_name }}-cookiecutter-config.yaml \
   --output-dir {{ cookiecutter.meta_output_dir }} \
   ./wemake-django-template
 ```
