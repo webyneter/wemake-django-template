@@ -7,8 +7,6 @@
 # Should be used together with `docker/docker-compose.prod.yml`
 # in production.
 
-version: "3.8"
-
 services:
   web:
     image: {{ cookiecutter.project_name }}:development

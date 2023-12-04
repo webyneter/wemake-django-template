@@ -6,8 +6,6 @@
 # This setup is supposed to be used with `docker-swarm`.
 # See `./docs/pages/template/production.rst` docs.
 
-version: "3.8"
-
 services:
   web:
     image: registry.gitlab.com/{{ cookiecutter.organization }}/{{ cookiecutter.project_name }}:latest
