@@ -11,10 +11,6 @@ environment="${1}"
 shift
 params="${*}"
 
-set -o allexport
-. ./config/.env
-set +o allexport
-
 export DJANGO_ENV="${environment}"
 
 GIT_COMMIT_SHA="$(git rev-parse HEAD)"
@@ -31,11 +27,11 @@ docker_options="${DOCKER_OPTIONS:-}"
 
 docker_compose_options='--file ./docker-compose.yml'
 case "${DJANGO_ENV}" in
-"${DEVELOPMENT_DJANGO_ENV}")
+'development')
   docker_compose_options="${docker_compose_options} --file ./docker-compose.override.yml"
   ;;
 
-"${PRODUCTION_DJANGO_ENV}")
+'production')
   set -o allexport
   . remote_host.env
   set +o allexport
